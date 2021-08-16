@@ -9,9 +9,9 @@ drop = 0
 for i in range(len(mountain) - 1):
     ride += 1
     drop += 3
-    j = mountain[ride][drop % len(mountain[ride])]
+    tree = mountain[ride][drop % len(mountain[ride])]
 
-    if j == '#':
+    if tree == '#':
         treecount += 1
 
 print('treecount', treecount)
