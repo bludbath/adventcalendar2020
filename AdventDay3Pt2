@@ -1,0 +1,22 @@
+with open('Day3input.txt') as f:
+    map = f.readlines()
+    map = [line.strip() for line in map]
+
+stoops = [(1, 1), (3, 1), (5, 1), (7, 1), (1, 2)]
+total = 1
+
+for stoop in stoops:
+    treeCounter = 0
+    hill, slope = 0, 0
+
+    while hill+1 < len(map):
+        hill += stoop[1]
+        slope += stoop[0]
+
+        mountain = map[hill][slope % len(map[hill])]
+        if mountain == '#':
+            treeCounter += 1
+
+    total *= treeCounter
+
+print(total)
