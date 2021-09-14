@@ -1,0 +1,33 @@
+inputfile = open('test.txt', 'r')
+data = [x.strip() for x in inputfile.readlines()]
+
+def validate(data):
+    valid_passport_count = 0
+    required_fields = [
+        'byr', # Birth year
+        'iyr', # Issue year
+        'eyr', # Expiration year
+        'hgt', # Height
+        'hcl', # Hair color
+        'ecl', # Eye color
+        'pid' # Passport ID
+        #'cid', # Country ID
+    ]
+
+    # Variable to track number of required fields for current passport
+    current = 0
+    for line in data:
+        if line == '':                              # Empty line indicates new passport
+            if current == len(required_fields):
+                valid_passport_count += 1
+            current = 0
+            continue
+
+        for field in line.split():
+            key, val = field.split(':')
+            if key in required_fields:
+                current += 1
+
+    return valid_passport_count
+
+print("# of Valid Passports: %d" % validate(data))
